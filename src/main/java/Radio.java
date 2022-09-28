@@ -1,6 +1,15 @@
 public class Radio {
-    public int currentRadioStation;
-    public int currentVolume;
+    private int currentRadioStation;
+    private int currentVolume;
+    private int radioStationAmount;
+
+    public Radio() {
+        radioStationAmount = 10;
+    }
+
+    public Radio(int radioStationAmount) {
+        this.radioStationAmount = radioStationAmount;
+    }
 
     public int getCurrentVolume() {
         return currentVolume;
@@ -10,18 +19,18 @@ public class Radio {
         return currentRadioStation;
     }
 
-    public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation > 9) {
+    public void setCurrentRadioStation(int CurrentRadioStation) {
+        if (CurrentRadioStation > radioStationAmount - 1) {
             return;
         }
-        if (newCurrentRadioStation < 0) {
+        if (CurrentRadioStation < 0) {
             return;
         }
-        currentRadioStation = newCurrentRadioStation;
+        this.currentRadioStation = CurrentRadioStation;
     }
 
     public void next() {
-        if (currentRadioStation == 9) {
+        if (currentRadioStation == radioStationAmount - 1) {
             currentRadioStation = 0;
         } else {
             currentRadioStation = currentRadioStation + 1;
@@ -30,21 +39,21 @@ public class Radio {
 
     public void prev() {
         if (currentRadioStation == 0) {
-            currentRadioStation = 9;
+            currentRadioStation = radioStationAmount - 1;
         } else {
             currentRadioStation = currentRadioStation - 1;
         }
     }
 
-    public void setCurrentVolume(int newCurrentVolume) {
-        currentVolume = newCurrentVolume;
+    public void setCurrentVolume(int CurrentVolume) {
+        this.currentVolume = CurrentVolume;
     }
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < 100) {
             currentVolume = currentVolume + 1;
         } else {
-            currentVolume = 10;
+            currentVolume = 100;
         }
     }
 
